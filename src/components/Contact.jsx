@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, GithubIcon, Linkedin, FileDown, ArrowUpRight, Check, Copy } from 'lucide-react';
+import { Mail, Github, Linkedin, FileDown, ArrowUpRight, Check, Copy } from 'lucide-react';
 import { LeafIcon } from './LeafMotif';
 
 export default function Contact() {
@@ -20,7 +20,7 @@ export default function Contact() {
       value: "github.com/suhanakhan-dev",
       placeholderTag: "[PLACEHOLDER — Replace with your GitHub URL]",
       href: "https://github.com",
-      icon: GithubIcon,
+      icon: Github,
       isExternal: true
     },
     {
