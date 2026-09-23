@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suhana Khan — B.Tech CSE (AI & ML) | Field Notebook & Portfolio</title>
+  
+  <!-- Google Fonts: Fraunces & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            parchment: {
+              50: '#FAF8F4',
+              100: '#F9F6F0',
+              200: '#F3EFE6',
+              300: '#E7DFD2',
+              400: '#D5C9B8',
+              card: '#FFFDF9',
+            },
+            forest: {
+              50: '#EAF3ED',
+              100: '#CFE6D7',
+              200: '#9FC9AF',
+              400: '#4D8A66',
+              600: '#26543C',
+              700: '#1F4232',
+              800: '#173427',
+              900: '#10241B',
+            },
+            ochre: {
+              50: '#FDF8ED',
+              100: '#F9EED4',
+              200: '#F3DC9F',
+              300: '#E7C365',
+              400: '#D8A63D',
+              500: '#C68A35',
+              600: '#A76F26',
+              700: '#83541E',
+            },
+            night: {
+              bg: '#121714',
+              card: '#1A211D',
+              elevated: '#222B26',
+              border: '#2A362F',
+              text: '#EDE8DF',
+              muted: '#9CA79E',
+            }
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'Playfair Display', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'notebook': '0 4px 20px -2px rgba(28, 36, 30, 0.06), 0 2px 6px -1px rgba(28, 36, 30, 0.04)',
+            'notebook-hover': '0 14px 30px -4px rgba(28, 36, 30, 0.1), 0 6px 12px -2px rgba(28, 36, 30, 0.05)',
+            'dark-notebook': '0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.2)',
+            'dark-hover': '0 14px 30px -4px rgba(0, 0, 0, 0.6), 0 6px 12px -2px rgba(0, 0, 0, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .font-serif {
+      font-family: 'Fraunces', 'Playfair Display', serif;
+    }
+
+    /* Tactile Archival Paper Texture Overlay (Zero performance overhead SVG fractal noise) */
+    .paper-grain-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 40;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+    .dark .paper-grain-overlay {
+      opacity: 0.05;
+      mix-blend-mode: overlay;
+    }
+
+    /* Living Organic Gradient Drift Keyframes */
+    @keyframes blob-drift-1 {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+      33% {
+        transform: translate3d(35px, -28px, 0) scale(1.08) rotate(4deg);
+      }
+      66% {
+        transform: translate3d(-24px, 22px, 0) scale(0.94) rotate(-3deg);
+      }
+    }
+
+    @keyframes blob-drift-2 {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+      40% {
+        transform: translate3d(-38px, 32px, 0) scale(1.06) rotate(-5deg);
+      }
+      75% {
+        transform: translate3d(28px, -18px, 0) scale(0.96) rotate(3deg);
+      }
+    }
+
+    @keyframes blob-drift-3 {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(24px, 32px, 0) scale(1.07);
+      }
+    }
+
+    @keyframes blob-drift-4 {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+      50% {
+        transform: translate3d(-25px, -25px, 0) scale(1.05) rotate(4deg);
+      }
+    }
+
+    .animate-blob-1 {
+      animation: blob-drift-1 26s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      will-change: transform;
+    }
+    .animate-blob-2 {
+      animation: blob-drift-2 32s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      will-change: transform;
+    }
+    .animate-blob-3 {
+      animation: blob-drift-3 28s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      will-change: transform;
+    }
+    .animate-blob-4 {
+      animation: blob-drift-4 34s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      will-change: transform;
+    }
+
+    /* Ambient Warm Specular Light Sweep Across Hero */
+    @keyframes light-sweep {
+      0% {
+        transform: translateX(-120%) rotate(25deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.06;
+      }
+      50% {
+        opacity: 0.08;
+      }
+      80% {
+        opacity: 0.05;
+      }
+      100% {
+        transform: translateX(220%) rotate(25deg);
+        opacity: 0;
+      }
+    }
+    .animate-light-sweep {
+      animation: light-sweep 24s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+
+    /* Botanical Line-Art Gentle Floating & Breathing */
+    @keyframes botanical-float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+        opacity: 0.28;
+      }
+      50% {
+        transform: translate3d(0, -9px, 0) rotate(2.5deg);
+        opacity: 0.44;
+      }
+    }
+    .animate-botanical-float {
+      animation: botanical-float 16s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    @keyframes botanical-sway {
+      0%, 100% {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+        opacity: 0.25;
+      }
+      50% {
+        transform: rotate(-3deg) translate3d(-4px, -6px, 0);
+        opacity: 0.38;
+      }
+    }
+    .animate-botanical-sway {
+      animation: botanical-sway 18s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    /* Extremely Subtle Floating Botanical Motes / Spores */
+    @keyframes mote-drift-1 {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.25;
+      }
+      50% {
+        transform: translate3d(14px, -28px, 0);
+        opacity: 0.65;
+      }
+    }
+    @keyframes mote-drift-2 {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.2;
+      }
+      50% {
+        transform: translate3d(-16px, -22px, 0);
+        opacity: 0.6;
+      }
+    }
+    @keyframes mote-drift-3 {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.22;
+      }
+      50% {
+        transform: translate3d(10px, -32px, 0);
+        opacity: 0.55;
+      }
+    }
+    .animate-mote-1 { animation: mote-drift-1 14s ease-in-out infinite alternate; }
+    .animate-mote-2 { animation: mote-drift-2 18s ease-in-out infinite alternate; }
+    .animate-mote-3 { animation: mote-drift-3 16s ease-in-out infinite alternate; }
+
+    /* Field Notebook Dynamic Dot Grid in Skills Section */
+    .field-dot-grid {
+      background-image: radial-gradient(rgba(31, 66, 50, 0.08) 1.2px, transparent 1.2px);
+      background-size: 26px 26px;
+      animation: grid-drift 45s linear infinite;
+    }
+    .dark .field-dot-grid {
+      background-image: radial-gradient(rgba(52, 211, 153, 0.08) 1.2px, transparent 1.2px);
+      background-size: 26px 26px;
+    }
+    @keyframes grid-drift {
+      0% { background-position: 0 0; }
+      100% { background-position: 26px 26px; }
+    }
+
+    /* Soft Glow Breathing for Contact Section */
+    @keyframes contact-glow-pulse {
+      0%, 100% {
+        transform: scale(1) translate3d(0, 0, 0);
+        opacity: 0.35;
+      }
+      50% {
+        transform: scale(1.1) translate3d(10px, -8px, 0);
+        opacity: 0.6;
+      }
+    }
+    .animate-contact-glow {
+      animation: contact-glow-pulse 16s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    /* Card Micro-Interaction Enhancements */
+    .field-card {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .field-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-tactile {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background-color 0.2s ease;
+    }
+    .btn-tactile:hover {
+      transform: translateY(-2px);
+    }
+    .btn-tactile:active {
+      transform: translateY(0px);
+    }
+
+    /* Scroll Reveal Baseline */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-item.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Strict Accessibility: prefers-reduced-motion: reduce */
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .animate-blob-1, .animate-blob-2, .animate-blob-3, .animate-blob-4,
+      .animate-light-sweep, .animate-botanical-float, .animate-botanical-sway,
+      .animate-mote-1, .animate-mote-2, .animate-mote-3, .field-dot-grid,
+      .animate-contact-glow {
+        animation: none !important;
+        transform: none !important;
+      }
+      .reveal-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .field-card:hover, .btn-tactile:hover {
+        transform: none !important;
+      }
+    }
+  </style>
+
+  <!-- React 18 & Babel Standalone -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-parchment-100 text-[#1C241E] dark:bg-night-bg dark:text-night-text antialiased transition-colors duration-300 relative selection:bg-ochre-200 dark:selection:bg-forest-900 selection:text-forest-900 dark:selection:text-emerald-200">
+  
+  <!-- Tactile Archival Paper Grain Filter Overlay -->
+  <div class="paper-grain-overlay" aria-hidden="true"></div>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // Signature Leaf SVG Motif
+    function LeafIcon({ className = "w-5 h-5", strokeWidth = 1.6 }) {
+      return (
+        <svg 
+          className={className} 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path 
+            d="M12 21C7 21 4 17 4 12C4 7 8 3 19 3C19 14 17 21 12 21Z" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          />
+          <path 
+            d="M6.5 17.5L19 3" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round"
+          />
+          <path 
+            d="M10.5 13.5L13.5 16" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round"
+          />
+          <path 
+            d="M13.5 10.5L16.5 13" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    }
+
+    // Delicate botanical sprig line-art for atmospheric section edges
+    function BotanicalSprig({ className = "w-36 h-36", strokeWidth = 1.2 }) {
+      return (
+        <svg 
+          className={className} 
+          viewBox="0 0 100 100" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path 
+            d="M15 85 C 35 70, 50 45, 80 18" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+          />
+          {/* Leaf 1 */}
+          <path 
+            d="M38 62 C 34 52, 25 50, 22 55 C 26 64, 34 64, 38 62 Z" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+          />
+          {/* Leaf 2 */}
+          <path 
+            d="M48 51 C 55 44, 63 46, 64 53 C 58 57, 50 56, 48 51 Z" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+          />
+          {/* Leaf 3 */}
+          <path 
+            d="M62 37 C 58 28, 48 29, 47 36 C 53 41, 60 40, 62 37 Z" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+          />
+          {/* Terminal bud */}
+          <path 
+            d="M80 18 C 77 12, 70 14, 71 21 C 76 23, 80 21, 80 18 Z" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+          />
+        </svg>
+      );
+    }
+
+    // Archival botanical corner embellishment
+    function BotanicalCorner({ className = "w-24 h-24", strokeWidth = 1.2 }) {
+      return (
+        <svg 
+          className={className} 
+          viewBox="0 0 60 60" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path 
+            d="M6 54 C 18 36, 36 18, 54 6" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+          />
+          <path 
+            d="M24 36 C 20 28, 14 30, 16 38 C 22 40, 24 38, 24 36 Z" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+          />
+          <path 
+            d="M38 22 C 44 16, 42 10, 36 12 C 34 18, 36 22, 38 22 Z" 
+            stroke="currentColor" 
+            strokeWidth={strokeWidth} 
+            strokeLinecap="round" 
+          />
+        </svg>
+      );
+    }
+
+    function LeafDivider({ className = "my-12" }) {
+      return (
+        <div className={`flex items-center justify-center gap-4 ${className}`} aria-hidden="true">
+          <div className="h-px bg-gradient-to-r from-transparent via-forest-700/25 to-forest-700/40 dark:via-night-border dark:to-emerald-500/30 flex-1 max-w-xs"></div>
+          <LeafIcon className="w-4 h-4 text-ochre-500 dark:text-ochre-400 rotate-45 transform" strokeWidth={1.5} />
+          <div className="h-px bg-gradient-to-l from-transparent via-forest-700/25 to-forest-700/40 dark:via-night-border dark:to-emerald-500/30 flex-1 max-w-xs"></div>
+        </div>
+      );
+    }
+
+    // Floating Ambient Organic Shapes System (Placed across page depth)
+    function AmbientBackgroundShapes({ scrollY }) {
+      const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const parallaxOffset = prefersReducedMotion ? 0 : scrollY * 0.08;
+
+      return (
+        <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden="true">
+          
+          {/* Shape 1: Deep Botanical Green (Upper Left) */}
+          <div 
+            style={{ transform: `translate3d(0, ${-parallaxOffset * 0.9}px, 0)` }}
+            className="absolute -top-[10%] -left-[10%] w-[580px] h-[580px] rounded-[45%_55%_65%_35%/50%_45%_55%_50%] bg-gradient-to-br from-forest-700/[0.07] via-forest-600/[0.04] to-transparent dark:from-emerald-950/25 dark:via-emerald-900/10 dark:to-transparent blur-[95px] animate-blob-1"
+          />
+
+          {/* Shape 2: Warm Ochre Gold (Upper Right Behind Hero/Photo) */}
+          <div 
+            style={{ transform: `translate3d(0, ${-parallaxOffset * 1.1}px, 0)` }}
+            className="absolute top-[8%] -right-[8%] w-[520px] h-[520px] rounded-[60%_40%_35%_65%/55%_35%_65%_45%] bg-gradient-to-tl from-ochre-400/[0.08] via-ochre-500/[0.04] to-transparent dark:from-amber-950/25 dark:via-ochre-900/10 dark:to-transparent blur-[90px] animate-blob-2"
+          />
+
+          {/* Shape 3: Soft Sage & Cream Glow (Midpage Behind Skills/Projects) */}
+          <div 
+            style={{ transform: `translate3d(0, ${-parallaxOffset * 0.6}px, 0)` }}
+            className="absolute top-[48%] -left-[12%] w-[640px] h-[640px] rounded-[40%_60%_50%_50%/45%_55%_45%_55%] bg-gradient-to-tr from-forest-700/[0.05] via-ochre-100/[0.03] to-transparent dark:from-forest-900/15 dark:via-night-elevated/40 dark:to-transparent blur-[110px] animate-blob-3"
+          />
+
+          {/* Shape 4: Warm Nocturne Amber/Gold (Lower Page Behind Contact) */}
+          <div 
+            style={{ transform: `translate3d(0, ${-parallaxOffset * 0.7}px, 0)` }}
+            className="absolute -bottom-[10%] right-[10%] w-[560px] h-[560px] rounded-[50%_50%_60%_40%/40%_60%_40%_60%] bg-gradient-to-bl from-ochre-500/[0.07] via-forest-600/[0.03] to-transparent dark:from-amber-950/20 dark:via-emerald-950/15 dark:to-transparent blur-[100px] animate-blob-4"
+          />
+
+        </div>
+      );
+    }
+
+    // Navbar Component
+    function Navbar({ darkMode, setDarkMode }) {
+      const [scrolled, setScrolled] = useState(false);
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+      useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      const navLinks = [
+        { name: "About", href: "#about" },
+        { name: "Skills", href: "#skills" },
+        { name: "Projects", href: "#projects" },
+        { name: "Contact", href: "#contact" },
+      ];
+
+      return (
+        <header 
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+            scrolled 
+              ? 'bg-parchment-100/92 dark:bg-night-bg/92 backdrop-blur-md shadow-sm border-b border-forest-700/10 dark:border-night-border py-3' 
+              : 'bg-transparent py-5'
+          }`}
+        >
+          <div className="max-w-6xl mx-auto px-6 sm:px-8 flex items-center justify-between">
+            <a 
+              href="#" 
+              id="brand-logo"
+              className="group flex items-center gap-2.5 text-forest-800 dark:text-parchment-100 font-serif font-semibold text-lg tracking-tight hover:text-ochre-600 dark:hover:text-ochre-400 transition-colors"
+            >
+              <span className="p-1.5 rounded-lg bg-forest-700/10 dark:bg-forest-400/10 text-forest-700 dark:text-forest-200 group-hover:rotate-12 transition-transform duration-300">
+                <LeafIcon className="w-4 h-4" />
+              </span>
+              <span className="tracking-wide">Suhana Khan</span>
+              <span className="text-xs uppercase tracking-widest font-sans font-medium px-2 py-0.5 rounded-full bg-forest-700/5 dark:bg-night-elevated text-forest-700 dark:text-forest-200 border border-forest-700/15 dark:border-night-border hidden sm:inline-block">
+                AI & ML
+              </span>
+            </a>
+
+            <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-forest-900/80 dark:text-night-text">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="relative py-1 hover:text-ochre-600 dark:hover:text-ochre-400 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-ochre-500 hover:after:w-full after:transition-all after:duration-300"
+                >
+                  {link.name}
+                </a>
+              ))}
+
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                id="theme-toggle-btn"
+                className="p-2 rounded-lg bg-parchment-200/80 dark:bg-night-elevated text-forest-800 dark:text-ochre-300 hover:bg-parchment-300 dark:hover:bg-night-border transition-all border border-forest-700/15 dark:border-night-border flex items-center justify-center cursor-pointer btn-tactile"
+                title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+                aria-label="Toggle theme"
+              >
+                {darkMode ? (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                )}
+              </button>
+            </nav>
+
+            <div className="flex md:hidden items-center gap-3">
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                id="mobile-theme-toggle"
+                className="p-2 rounded-lg bg-parchment-200/80 dark:bg-night-elevated text-forest-800 dark:text-ochre-300 border border-forest-700/15 dark:border-night-border btn-tactile"
+              >
+                {darkMode ? "☀️" : "🌙"}
+              </button>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                id="mobile-menu-btn"
+                className="p-2 rounded-lg bg-parchment-200/80 dark:bg-night-elevated text-forest-800 dark:text-night-text border border-forest-700/15 dark:border-night-border"
+              >
+                {mobileMenuOpen ? "✕" : "☰"}
+              </button>
+            </div>
+          </div>
+
+          {mobileMenuOpen && (
+            <div className="md:hidden bg-parchment-100/98 dark:bg-night-card/98 border-b border-forest-700/15 dark:border-night-border px-6 py-5 shadow-lg backdrop-blur-md">
+              <div className="flex flex-col gap-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-base font-medium text-forest-900 dark:text-night-text hover:text-ochre-600 dark:hover:text-ochre-400 py-1"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </header>
+      );
+    }
+
+    // Hero Component with Dynamic Living Background & Subtle Parallax
+    function Hero({ scrollY }) {
+      const stats = [
+        { value: "2", label: "Independent projects", subtext: "Crafted from scratch" },
+        { value: "AI & ML", label: "Specialization focus", subtext: "Intelligent systems & logic" },
+        { value: "React", label: "Primary tool", subtext: "Component architecture" }
+      ];
+
+      const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const heroParallax = prefersReducedMotion ? 0 : scrollY * 0.12;
+
+      return (
+        <section id="hero" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+          
+          {/* Ambient Specular Light Beam (Slow moving across hero) */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10" aria-hidden="true">
+            <div className="w-[140%] h-[400px] bg-gradient-to-r from-transparent via-amber-200/[0.04] dark:via-emerald-400/[0.03] to-transparent animate-light-sweep absolute -top-20 -left-[20%]" />
+          </div>
+
+          {/* Hand-Drawn Botanical Line-Art Accent Floating behind upper-right */}
+          <div 
+            style={{ transform: `translate3d(0, ${heroParallax * 0.5}px, 0)` }}
+            className="absolute top-12 right-6 md:right-24 pointer-events-none text-forest-700/[0.22] dark:text-emerald-400/[0.18] -z-10 animate-botanical-float hidden sm:block" 
+            aria-hidden="true"
+          >
+            <BotanicalSprig className="w-48 h-48 md:w-64 md:h-64" strokeWidth={1.1} />
+          </div>
+
+          {/* Lower left botanical counterpoint */}
+          <div 
+            style={{ transform: `translate3d(0, ${heroParallax * 0.3}px, 0)` }}
+            className="absolute -bottom-6 -left-6 pointer-events-none text-ochre-600/[0.2] dark:text-ochre-400/[0.15] -z-10 animate-botanical-sway hidden lg:block" 
+            aria-hidden="true"
+          >
+            <BotanicalCorner className="w-36 h-36" strokeWidth={1.2} />
+          </div>
+
+          {/* Subtle Floating Botanical Motes / Spores */}
+          <div className="absolute inset-0 pointer-events-none -z-10 overflow-hidden" aria-hidden="true">
+            <span className="absolute top-[28%] left-[18%] w-1.5 h-1.5 rounded-full bg-ochre-400/50 dark:bg-amber-300/40 animate-mote-1" />
+            <span className="absolute top-[65%] left-[28%] w-1 h-1 rounded-full bg-forest-600/40 dark:bg-emerald-300/30 animate-mote-2" />
+            <span className="absolute top-[35%] right-[32%] w-2 h-2 rounded-full bg-ochre-300/40 dark:bg-ochre-400/30 animate-mote-3" />
+            <span className="absolute top-[75%] right-[18%] w-1.5 h-1.5 rounded-full bg-forest-700/35 dark:bg-emerald-400/30 animate-mote-1" />
+          </div>
+
+          <div className="max-w-6xl mx-auto px-6 sm:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+              
+              {/* Left Column: Headline and Bio */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left">
+                
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-parchment-200/90 dark:bg-night-card border border-forest-700/15 dark:border-night-border text-forest-800 dark:text-night-text text-xs tracking-wider uppercase font-medium mb-6 shadow-sm">
+                  <LeafIcon className="w-3.5 h-3.5 text-ochre-600 dark:text-ochre-400" />
+                  <span>Field Notes & Portfolio</span>
+                  <span className="w-1 h-1 rounded-full bg-ochre-500"></span>
+                  <span className="text-forest-700 dark:text-forest-200 font-semibold">2026</span>
+                </div>
+
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] font-serif font-bold text-forest-900 dark:text-night-text tracking-tight leading-[1.1] mb-4">
+                  Suhana Khan
+                </h1>
+
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="h-px w-8 bg-ochre-500"></span>
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-serif text-forest-700 dark:text-forest-200 font-medium tracking-wide">
+                    B.Tech CSE — AI & ML
+                  </h2>
+                </div>
+
+                <p className="text-base sm:text-lg text-forest-900/80 dark:text-night-muted font-normal max-w-xl leading-relaxed mb-10">
+                  Exploring the intersection of intelligent systems, playful game mechanics, and gentle software aesthetics — engineered with curiosity, precision, and purpose.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-4 mb-12">
+                  <a
+                    href="#projects"
+                    id="hero-view-projects-btn"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-forest-700 hover:bg-forest-800 dark:bg-forest-600 dark:hover:bg-forest-700 text-parchment-50 font-medium text-sm tracking-wide shadow-md transition-all btn-tactile"
+                  >
+                    <span>View Selected Projects</span>
+                    <span>&darr;</span>
+                  </a>
+
+                  <a
+                    href="#about"
+                    id="hero-read-bio-btn"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-parchment-card dark:bg-night-card hover:bg-parchment-200 dark:hover:bg-night-elevated text-forest-800 dark:text-night-text font-medium text-sm tracking-wide border border-forest-700/20 dark:border-night-border transition-all btn-tactile"
+                  >
+                    <span>Read Biography</span>
+                  </a>
+                </div>
+
+                {/* Stats Row */}
+                <div className="w-full pt-8 border-t border-forest-700/15 dark:border-night-border">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
+                    {stats.map((stat, i) => (
+                      <div 
+                        key={i} 
+                        className="group flex flex-col p-4 rounded-xl bg-parchment-card/85 dark:bg-night-card/85 border border-forest-700/10 dark:border-night-border/80 shadow-notebook transition-all hover:border-ochre-400/40 field-card"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-serif text-2xl font-bold text-forest-800 dark:text-parchment-100">
+                            {stat.value}
+                          </span>
+                          <span className="text-ochre-600 dark:text-ochre-400 text-xs">◆</span>
+                        </div>
+                        <span className="text-xs font-semibold text-forest-900 dark:text-night-text tracking-tight">
+                          {stat.label}
+                        </span>
+                        <span className="text-[11px] text-forest-700/70 dark:text-night-muted mt-0.5">
+                          {stat.subtext}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Photo Column with Archival Frame and Paper Offset */}
+              <div className="lg:col-span-5 flex justify-center lg:justify-end">
+                <div className="relative group w-full max-w-[340px] sm:max-w-[380px]">
+                  
+                  <div 
+                    className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl bg-parchment-300/80 dark:bg-night-elevated border border-forest-700/15 dark:border-night-border transition-transform group-hover:translate-x-4 group-hover:translate-y-4 duration-300"
+                    aria-hidden="true"
+                  />
+
+                  <div className="relative rounded-2xl overflow-hidden bg-parchment-card dark:bg-night-card border-2 border-forest-700/20 dark:border-night-border shadow-notebook z-10 p-3 field-card">
+                    <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-parchment-200 dark:bg-night-elevated">
+                      <img
+                        src="public/suhana.jpg"
+                        alt="Suhana Khan — B.Tech CSE (AI & ML)"
+                        className="w-full h-full object-cover object-center filter saturate-[1.02] contrast-[1.02] transition-transform duration-500 group-hover:scale-[1.02]"
+                        loading="eager"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-forest-950/25 via-transparent to-transparent pointer-events-none" />
+                    </div>
+
+                    <div className="mt-3 px-3 py-2 rounded-lg bg-parchment-100/90 dark:bg-night-bg/90 border border-forest-700/10 dark:border-night-border flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2">
+                        <LeafIcon className="w-3.5 h-3.5 text-ochre-600 dark:text-ochre-400" />
+                        <span className="font-serif font-medium text-forest-900 dark:text-night-text">Suhana Khan</span>
+                      </div>
+                      <span className="font-mono text-[11px] text-forest-700/70 dark:text-night-muted uppercase tracking-wider">
+                        CSE · AI & ML
+                      </span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="absolute -top-3 -right-3 z-20 w-9 h-9 rounded-full bg-parchment-50 dark:bg-night-elevated border border-ochre-400/50 shadow-sm flex items-center justify-center text-ochre-600 dark:text-ochre-400 rotate-12 group-hover:rotate-45 transition-transform duration-300"
+                    title="Signature Field Stamp"
+                  >
+                    <LeafIcon className="w-4 h-4" />
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // About Component with Personalized Narrative & My Journey Information Card
+    function About() {
+      const journeyDetails = [
+        {
+          label: "Degree",
+          value: "B.Tech — Computer Science & Engineering"
+        },
+        {
+          label: "Specialization",
+          value: "Artificial Intelligence & Machine Learning"
+        },
+        {
+          label: "University",
+          value: "JECRC University, Jaipur"
+        }
+      ];
+
+      const currentStatus = [
+        {
+          label: "Currently",
+          value: "1st Semester"
+        },
+        {
+          label: "Expected Graduation",
+          value: "2030"
+        }
+      ];
+
+      const interests = [
+        "AI/ML",
+        "Game Development",
+        "Gaming",
+        "Design"
+      ];
+
+      return (
+        <section id="about" className="py-20 md:py-28 relative overflow-hidden">
+          
+          {/* Subtle Margin Botanical Illustration on Section Edge */}
+          <div className="absolute top-1/2 -right-8 -translate-y-1/2 text-forest-700/[0.16] dark:text-emerald-400/[0.12] pointer-events-none -z-10 animate-botanical-sway hidden md:block" aria-hidden="true">
+            <BotanicalSprig className="w-56 h-56 rotate-90" strokeWidth={1} />
+          </div>
+
+          <div className="max-w-6xl mx-auto px-6 sm:px-8">
+            
+            {/* Section Header */}
+            <div className="flex flex-col items-start mb-10">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-ochre-600 dark:text-ochre-400 mb-2">
+                <span>01</span>
+                <span className="w-4 h-px bg-ochre-500"></span>
+                <span>Personal Field Note</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-forest-900 dark:text-night-text tracking-tight">
+                About Me
+              </h2>
+            </div>
+
+            {/* Two-Column Desktop / Stacked Mobile Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+              
+              {/* Left Column: Narrative Introduction (7 cols) */}
+              <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-forest-900/85 dark:text-night-muted leading-relaxed font-normal">
+                
+                <p className="font-serif text-2xl sm:text-3xl text-forest-900 dark:text-night-text font-semibold tracking-tight">
+                  Hi, I'm Suhana.
+                </p>
+
+                <p>
+                  I'm a first-semester B.Tech Computer Science &amp; Engineering student specializing in Artificial Intelligence &amp; Machine Learning at JECRC University, Jaipur.
+                </p>
+
+                <p>
+                  I'm at the beginning of my journey in technology, building my foundations in programming, problem solving, AI/ML, and web development. I enjoy learning by creating things rather than just studying concepts, which is why I like experimenting with projects and exploring new technologies.
+                </p>
+
+                <p>
+                  Beyond academics, I'm interested in AI, game development, gaming, and visual design. I enjoy combining technical ideas with creativity and hope to keep building projects that reflect both.
+                </p>
+
+              </div>
+
+              {/* Right Column: "My Journey" / "Currently" Information Card (5 cols) */}
+              <div className="lg:col-span-5">
+                <div className="relative p-6 sm:p-8 rounded-2xl bg-parchment-card/95 dark:bg-night-card/95 border border-forest-700/15 dark:border-night-border shadow-notebook field-card overflow-hidden">
+                  
+                  {/* Subtle ambient parchment warmth */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-ochre-400/[0.03] to-forest-700/[0.03] dark:from-amber-400/[0.03] dark:to-emerald-400/[0.03] pointer-events-none" />
+
+                  {/* Card Header with signature leaf detail */}
+                  <div className="flex items-center justify-between pb-4 mb-6 border-b border-forest-700/10 dark:border-night-border relative z-10">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-ochre-500"></span>
+                      <span className="font-mono text-xs uppercase tracking-wider text-forest-700 dark:text-forest-200 font-semibold">
+                        My Journey · Currently
+                      </span>
+                    </div>
+                    <div className="p-1 rounded bg-forest-700/5 dark:bg-forest-400/10 text-ochre-600 dark:text-ochre-400">
+                      <LeafIcon className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  {/* Information Rows with Strong Visual Hierarchy */}
+                  <div className="space-y-4 relative z-10">
+                    
+                    {/* Degree, Specialization, University */}
+                    {journeyDetails.map((item, idx) => (
+                      <div key={idx} className="pb-3.5 border-b border-forest-700/5 dark:border-night-border/70 last:border-none">
+                        <span className="text-[11px] font-mono uppercase tracking-widest text-ochre-600 dark:text-ochre-400 font-semibold block mb-1">
+                          {item.label}
+                        </span>
+                        <span className="text-sm sm:text-base font-serif font-medium text-forest-900 dark:text-night-text leading-snug block">
+                          {item.value}
+                        </span>
+                      </div>
+                    ))}
+
+                    {/* Currently & Expected Graduation (Side-by-Side Grid) */}
+                    <div className="grid grid-cols-2 gap-4 pb-3.5 border-b border-forest-700/5 dark:border-night-border/70 last:border-none">
+                      {currentStatus.map((item, idx) => (
+                        <div key={idx}>
+                          <span className="text-[11px] font-mono uppercase tracking-widest text-ochre-600 dark:text-ochre-400 font-semibold block mb-1">
+                            {item.label}
+                          </span>
+                          <span className="text-sm sm:text-base font-serif font-medium text-forest-900 dark:text-night-text leading-snug block">
+                            {item.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Interests */}
+                    <div className="pt-1">
+                      <span className="text-[11px] font-mono uppercase tracking-widest text-ochre-600 dark:text-ochre-400 font-semibold block mb-2">
+                        Interests
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {interests.map((interest, idx) => (
+                          <span
+                            key={idx}
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-parchment-200/70 dark:bg-night-elevated text-forest-800 dark:text-night-text text-xs font-sans font-medium border border-forest-700/10 dark:border-night-border"
+                          >
+                            <span className="w-1 h-1 rounded-full bg-ochre-500"></span>
+                            {interest}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <LeafDivider className="mt-20" />
+          </div>
+        </section>
+      );
+    }
+
+    // Skills Component with Slow Living Technical Field-Notebook Dot Grid
+    function Skills() {
+      const [activeTab, setActiveTab] = useState('all');
+
+      const skillCategories = [
+        {
+          category: "Languages & Foundations",
+          skills: [
+            { name: "Python", tag: "AI/ML Core" },
+            { name: "C++", tag: "Algorithms" },
+            { name: "JavaScript", tag: "ES6+" },
+            { name: "SQL", tag: "Relational DBs" },
+            { name: "Data Structures & Algorithms", tag: "Problem Solving" },
+          ]
+        },
+        {
+          category: "AI & Machine Learning",
+          skills: [
+            { name: "Machine Learning fundamentals", tag: "Specialization" },
+            { name: "NumPy & Pandas", tag: "Data Analysis" },
+            { name: "TensorFlow / PyTorch", tag: "Learning", isLearning: true },
+            { name: "Prompt Engineering", tag: "LLMs & Workflows" },
+          ]
+        },
+        {
+          category: "Frontend, Tooling & Design",
+          skills: [
+            { name: "React", tag: "Primary Tool", isHighlight: true },
+            { name: "Git & GitHub", tag: "Version Control" },
+            { name: "UI / Visual Design", tag: "Soft & Tactile" },
+          ]
+        }
+      ];
+
+      const allSkillsList = [
+        "Python", "C++", "JavaScript", "SQL", "React",
+        "Data Structures & Algorithms", "Machine Learning fundamentals",
+        "NumPy & Pandas", "TensorFlow/PyTorch (learning)",
+        "Prompt Engineering", "Git & GitHub", "UI/visual design"
+      ];
+
+      return (
+        <section id="skills" className="py-20 md:py-28 relative overflow-hidden">
+          
+          {/* Section Atmospheric Background: Living Technical Dot Matrix */}
+          <div className="absolute inset-0 field-dot-grid opacity-70 pointer-events-none -z-10" aria-hidden="true" />
+          
+          {/* Subtle Ambient Radial Spotlight */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-r from-ochre-100/[0.08] via-forest-100/[0.06] to-transparent dark:from-emerald-950/20 dark:via-transparent dark:to-transparent rounded-full blur-3xl pointer-events-none -z-10" aria-hidden="true" />
+
+          <div className="max-w-6xl mx-auto px-6 sm:px-8">
+            
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-ochre-600 dark:text-ochre-400 mb-2">
+                  <span>02</span>
+                  <span className="w-4 h-px bg-ochre-500"></span>
+                  <span>Technical Repertoire</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-forest-900 dark:text-night-text tracking-tight">
+                  Skills & Proficiencies
+                </h2>
+              </div>
+              <p className="text-sm text-forest-900/70 dark:text-night-muted max-w-md font-sans leading-relaxed">
+                From algorithmic problem-solving to machine learning workflows and tactile frontend interfaces.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2 mb-10 pb-3 border-b border-forest-700/10 dark:border-night-border">
+              <button
+                onClick={() => setActiveTab('all')}
+                className={`px-4 py-2 rounded-lg text-xs uppercase tracking-wider font-semibold transition-all btn-tactile ${
+                  activeTab === 'all'
+                    ? 'bg-forest-700 text-parchment-50 dark:bg-forest-600 shadow-sm'
+                    : 'bg-parchment-card/80 dark:bg-night-card text-forest-800 dark:text-night-muted hover:bg-parchment-200 dark:hover:bg-night-elevated'
+                }`}
+              >
+                All Skills ({allSkillsList.length})
+              </button>
+              {skillCategories.map((cat, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveTab(cat.category)}
+                  className={`px-4 py-2 rounded-lg text-xs uppercase tracking-wider font-semibold transition-all btn-tactile ${
+                    activeTab === cat.category
+                      ? 'bg-forest-700 text-parchment-50 dark:bg-forest-600 shadow-sm'
+                      : 'bg-parchment-card/80 dark:bg-night-card text-forest-800 dark:text-night-muted hover:bg-parchment-200 dark:hover:bg-night-elevated'
+                  }`}
+                >
+                  {cat.category}
+                </button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {skillCategories
+                .filter(cat => activeTab === 'all' || activeTab === cat.category)
+                .map((cat, catIdx) => (
+                  <div 
+                    key={catIdx}
+                    className="rounded-2xl p-6 sm:p-7 bg-parchment-card/90 dark:bg-night-card/90 border border-forest-700/15 dark:border-night-border shadow-notebook flex flex-col h-full field-card"
+                  >
+                    <div className="flex items-center justify-between pb-4 mb-5 border-b border-forest-700/10 dark:border-night-border">
+                      <h3 className="font-serif font-semibold text-lg text-forest-900 dark:text-night-text">
+                        {cat.category}
+                      </h3>
+                      <LeafIcon className="w-3.5 h-3.5 text-ochre-600 dark:text-ochre-400" />
+                    </div>
+
+                    <div className="flex flex-col gap-3 flex-1">
+                      {cat.skills.map((skill, sIdx) => (
+                        <div
+                          key={sIdx}
+                          className={`p-3 rounded-xl border transition-all ${
+                            skill.isHighlight 
+                              ? 'bg-ochre-50/75 dark:bg-night-elevated border-ochre-400/50 dark:border-ochre-500/30' 
+                              : 'bg-parchment-100/70 dark:bg-night-elevated/40 border-forest-700/10 dark:border-night-border hover:border-forest-700/30'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium text-sm text-forest-900 dark:text-night-text">
+                              {skill.name}
+                            </span>
+                            {skill.isLearning ? (
+                              <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-ochre-100 dark:bg-ochre-950/60 text-ochre-800 dark:text-ochre-300 border border-ochre-300 dark:border-ochre-700/40">
+                                ✨ learning
+                              </span>
+                            ) : skill.isHighlight ? (
+                              <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-forest-700/10 dark:bg-forest-400/15 text-forest-800 dark:text-forest-200 font-semibold border border-forest-700/20">
+                                Primary Tool
+                              </span>
+                            ) : (
+                              <span className="text-[11px] font-mono text-forest-700/70 dark:text-night-muted">
+                                {skill.tag}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+            </div>
+
+            <div className="mt-12 p-6 rounded-2xl bg-parchment-card/70 dark:bg-night-card/70 border border-forest-700/10 dark:border-night-border">
+              <div className="text-xs uppercase font-mono tracking-wider text-forest-700/70 dark:text-night-muted mb-4 flex items-center gap-2">
+                <span>Direct Index Chips</span>
+                <span className="h-px bg-forest-700/15 dark:bg-night-border flex-1"></span>
+              </div>
+              <div className="flex flex-wrap gap-2.5">
+                {allSkillsList.map((skillName, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-parchment-card dark:bg-night-elevated border border-forest-700/15 dark:border-night-border text-xs font-medium text-forest-900 dark:text-night-text shadow-sm hover:border-ochre-500 hover:text-ochre-600 dark:hover:text-ochre-300 transition-colors cursor-default"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-ochre-500"></span>
+                    {skillName}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <LeafDivider className="mt-20" />
+          </div>
+        </section>
+      );
+    }
+
+    // Projects Component with Paper/Ink Animated Atmosphere
+    function Projects() {
+      const [selectedGameMode, setSelectedGameMode] = useState('bot');
+      const [selectedSpecies, setSelectedSpecies] = useState('turtle');
+
+      const speciesList = {
+        turtle: { name: "Green Sea Turtle", scientific: "Chelonia mydas", depth: "0 - 110 m", status: "Endangered", icon: "🐢" },
+        whale: { name: "Humpback Whale", scientific: "Megaptera novaeangliae", depth: "0 - 200 m", status: "Least Concern", icon: "🐋" },
+        manta: { name: "Giant Oceanic Manta Ray", scientific: "Mobula birostris", depth: "10 - 1,000 m", status: "Vulnerable", icon: "🌊" }
+      };
+
+      return (
+        <section id="projects" className="py-20 md:py-28 relative overflow-hidden">
+          
+          {/* Subtle slow ink/paper wash glow behind projects */}
+          <div className="absolute top-1/3 -right-20 w-[600px] h-[600px] bg-gradient-to-bl from-emerald-100/[0.08] via-ochre-100/[0.04] to-transparent dark:from-emerald-950/20 dark:via-night-elevated/20 dark:to-transparent rounded-full blur-[100px] pointer-events-none -z-10" aria-hidden="true" />
+
+          <div className="max-w-6xl mx-auto px-6 sm:px-8">
+            
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+              <div>
+                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-ochre-600 dark:text-ochre-400 mb-2">
+                  <span>03</span>
+                  <span className="w-4 h-px bg-ochre-500"></span>
+                  <span>Case Studies</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-forest-900 dark:text-night-text tracking-tight">
+                  Featured Projects
+                </h2>
+              </div>
+              <p className="text-sm text-forest-900/70 dark:text-night-muted max-w-md font-sans leading-relaxed">
+                Independent creations uniting technical logic, playful interaction, and soft visual aesthetics.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-16">
+              
+              {/* Project 1: Memory Card Game */}
+              <div className="rounded-3xl bg-parchment-card/95 dark:bg-night-card/95 border-2 border-forest-700/15 dark:border-night-border shadow-notebook overflow-hidden field-card group">
+                <div className="grid grid-cols-1 lg:grid-cols-12">
+                  
+                  <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2.5 mb-4">
+                        <span className="px-3 py-1 rounded-full bg-forest-700/10 dark:bg-forest-400/15 text-forest-800 dark:text-forest-200 text-xs font-semibold uppercase tracking-wider font-mono">
+                          React · Independent Build
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-amber-100/70 dark:bg-ochre-950/60 text-ochre-800 dark:text-ochre-300 text-xs font-medium font-sans">
+                          Cottagecore Pastel Theme
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl font-serif font-bold text-forest-900 dark:text-night-text mb-2">
+                        Memory Card Game
+                      </h3>
+                      <p className="text-sm text-ochre-600 dark:text-ochre-400 font-medium mb-4">
+                        Tactile card mechanics with strategic bot memory heuristics
+                      </p>
+
+                      <p className="text-sm sm:text-base text-forest-900/80 dark:text-night-muted leading-relaxed font-sans mb-8">
+                        An artisanal browser card game built around a warm, gentle cottagecore visual palette. Engineered with 3 distinct play modes and a bot opponent that builds an internal memory map of flipped cards to make calculated strategic decisions rather than random guesses.
+                      </p>
+
+                      <div className="space-y-4 mb-8">
+                        <div className="flex items-start gap-3">
+                          <span className="text-forest-700 dark:text-forest-200 font-bold">✓</span>
+                          <div>
+                            <strong className="text-sm text-forest-900 dark:text-night-text font-serif block">
+                              3 Play Modes
+                            </strong>
+                            <span className="text-xs text-forest-900/70 dark:text-night-muted">
+                              Solo vs Bot (with heuristic tracking), 2-Player Pass-and-Play for shared screens, and untimed Practice mode.
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <span className="text-forest-700 dark:text-forest-200 font-bold">✓</span>
+                          <div>
+                            <strong className="text-sm text-forest-900 dark:text-night-text font-serif block">
+                              Strategic Bot Memory
+                            </strong>
+                            <span className="text-xs text-forest-900/70 dark:text-night-muted">
+                              The bot actively records coordinates of revealed cards and calculates optimal matches when its turn arrives.
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <span className="text-forest-700 dark:text-forest-200 font-bold">✓</span>
+                          <div>
+                            <strong className="text-sm text-forest-900 dark:text-night-text font-serif block">
+                              Playtested Grid Pacing
+                            </strong>
+                            <span className="text-xs text-forest-900/70 dark:text-night-muted">
+                              Card grid proportions, flip animation timings (350ms), and feedback sounds were calibrated through playtesting.
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-forest-700/10 dark:border-night-border flex flex-wrap gap-2">
+                      {["React", "Cottagecore Aesthetics", "Custom Bot AI", "Playtested UX"].map((tag, i) => (
+                        <span
+                          key={i}
+                          className="text-xs font-mono px-2.5 py-1 rounded-md bg-parchment-200/70 dark:bg-night-elevated text-forest-800 dark:text-night-muted border border-forest-700/10 dark:border-night-border"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Preview */}
+                  <div className="lg:col-span-5 bg-gradient-to-br from-amber-50/80 via-emerald-50/40 to-parchment-200/60 dark:from-night-elevated dark:via-night-card dark:to-forest-950/20 p-8 border-t lg:border-t-0 lg:border-l border-forest-700/15 dark:border-night-border flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono uppercase tracking-wider text-forest-700 dark:text-forest-200 font-semibold">
+                          🎮 Mode Preview
+                        </span>
+                        <LeafIcon className="w-3.5 h-3.5 text-ochre-600 dark:text-ochre-400" />
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-2 mb-6">
+                        {['bot', 'pass', 'practice'].map((mode) => (
+                          <button
+                            key={mode}
+                            onClick={() => setSelectedGameMode(mode)}
+                            className={`p-2 rounded-lg text-xs font-medium border transition-all btn-tactile ${
+                              selectedGameMode === mode
+                                ? 'bg-forest-700 text-parchment-50 border-forest-700 dark:bg-forest-600'
+                                : 'bg-parchment-card/80 dark:bg-night-card text-forest-800 dark:text-night-muted border-forest-700/10'
+                            }`}
+                          >
+                            {mode === 'bot' ? '🤖 Vs Bot' : mode === 'pass' ? '👥 2-Player' : '🌸 Practice'}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-parchment-card/90 dark:bg-night-card border border-forest-700/15 dark:border-night-border shadow-inner mb-6">
+                        <div className="flex justify-between items-center mb-3 text-[11px] font-mono text-forest-700/80 dark:text-night-muted">
+                          <span>Pastel Botanical Cards</span>
+                          <span className="text-ochre-600 dark:text-ochre-400 font-semibold">
+                            {selectedGameMode === 'bot' ? 'Bot Tracking: Active' : selectedGameMode === 'pass' ? 'Player 1 Turn' : 'Free Play'}
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-4 gap-2.5">
+                          {[
+                            { icon: "🌸", color: "bg-rose-50 border-rose-200 dark:bg-rose-950/30", revealed: true },
+                            { icon: "🌿", color: "bg-emerald-50 border-emerald-200 dark:bg-emerald-950/30", revealed: false },
+                            { icon: "🍄", color: "bg-amber-50 border-amber-200 dark:bg-amber-950/30", revealed: true },
+                            { icon: "🌰", color: "bg-orange-50 border-orange-200 dark:bg-orange-950/30", revealed: false },
+                            { icon: "🌼", color: "bg-yellow-50 border-yellow-200 dark:bg-yellow-950/30", revealed: false },
+                            { icon: "🍄", color: "bg-amber-50 border-amber-200 dark:bg-amber-950/30", revealed: true },
+                            { icon: "🌸", color: "bg-rose-50 border-rose-200 dark:bg-rose-950/30", revealed: true },
+                            { icon: "🌾", color: "bg-stone-50 border-stone-200 dark:bg-stone-900/30", revealed: false },
+                          ].map((card, i) => (
+                            <div
+                              key={i}
+                              className={`aspect-square rounded-xl border flex items-center justify-center text-lg select-none shadow-sm ${card.color} transition-transform hover:scale-105 duration-200`}
+                            >
+                              {card.revealed ? card.icon : "🍃"}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="p-3.5 rounded-xl bg-forest-700/5 dark:bg-night-card border border-forest-700/10 dark:border-night-border text-xs">
+                        <div className="flex items-center justify-between mb-1.5 font-mono text-[11px] text-forest-800 dark:text-forest-200 font-semibold">
+                          <span>Bot Internal Memory State</span>
+                          <span className="text-ochre-600 dark:text-ochre-400">92% accuracy</span>
+                        </div>
+                        <div className="font-mono text-[11px] text-forest-900/80 dark:text-night-muted space-y-1">
+                          <div className="flex justify-between"><span>Slot [1,3] ➔ Mushroom 🍄</span><span className="text-forest-700 dark:text-forest-200">Matching Pair</span></div>
+                          <div className="flex justify-between"><span>Slot [0,1] ➔ Chamomile 🌼</span><span>Stored</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+              {/* Project 2: Ocean Tracker */}
+              <div className="rounded-3xl bg-parchment-card/95 dark:bg-night-card/95 border-2 border-forest-700/15 dark:border-night-border shadow-notebook overflow-hidden field-card group">
+                <div className="grid grid-cols-1 lg:grid-cols-12">
+                  
+                  <div className="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-between">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2.5 mb-4">
+                        <span className="px-3 py-1 rounded-full bg-sky-100/80 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 text-xs font-semibold uppercase tracking-wider font-mono">
+                          Lovable Prototype · Simulated Data
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-forest-700/10 dark:bg-forest-400/15 text-forest-800 dark:text-forest-200 text-xs font-medium font-sans">
+                          Maritime & Marine Life
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl font-serif font-bold text-forest-900 dark:text-night-text mb-2">
+                        Ocean Tracker
+                      </h3>
+                      <p className="text-sm text-ochre-600 dark:text-ochre-400 font-medium mb-4">
+                        Live oceanic vessel corridor tracking with an interactive water species finder
+                      </p>
+
+                      <p className="text-sm sm:text-base text-forest-900/80 dark:text-night-muted leading-relaxed font-sans mb-8">
+                        An interactive geospatial prototype built with Lovable using simulated ocean streams. Visualizes real-time movements of cargo containers, international freight ships, and luxury cruises alongside an interactive water species biodiversity index.
+                      </p>
+
+                      <div className="space-y-4 mb-8">
+                        <div className="flex items-start gap-3">
+                          <span className="text-forest-700 dark:text-forest-200 font-bold">✓</span>
+                          <div>
+                            <strong className="text-sm text-forest-900 dark:text-night-text font-serif block">
+                              Live Vessel Tracking Map
+                            </strong>
+                            <span className="text-xs text-forest-900/70 dark:text-night-muted">
+                              Real-time simulated transponders for containers, freight carriers, and cruises across shipping lanes.
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <span className="text-forest-700 dark:text-forest-200 font-bold">✓</span>
+                          <div>
+                            <strong className="text-sm text-forest-900 dark:text-night-text font-serif block">
+                              Water Species Finder
+                            </strong>
+                            <span className="text-xs text-forest-900/70 dark:text-night-muted">
+                              Interactive index detailing marine species profiles, depth habitats, and conservation statuses.
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-3">
+                          <span className="text-forest-700 dark:text-forest-200 font-bold">✓</span>
+                          <div>
+                            <strong className="text-sm text-forest-900 dark:text-night-text font-serif block">
+                              Lovable Prototyping
+                            </strong>
+                            <span className="text-xs text-forest-900/70 dark:text-night-muted">
+                              Rapid architectural exploration with simulated APIs, latency modelling, and ambient ocean colorways.
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-forest-700/10 dark:border-night-border flex flex-wrap gap-2">
+                      {["Lovable", "Simulated Telemetry", "Marine Life Finder", "Spatial UI"].map((tag, i) => (
+                        <span
+                          key={i}
+                          className="text-xs font-mono px-2.5 py-1 rounded-md bg-parchment-200/70 dark:bg-night-elevated text-forest-800 dark:text-night-muted border border-forest-700/10 dark:border-night-border"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Preview */}
+                  <div className="lg:col-span-5 bg-gradient-to-br from-sky-50/70 via-emerald-50/30 to-parchment-200/60 dark:from-night-elevated dark:via-night-card dark:to-teal-950/20 p-8 border-t lg:border-t-0 lg:border-l border-forest-700/15 dark:border-night-border flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-xs font-mono uppercase tracking-wider text-forest-700 dark:text-forest-200 font-semibold">
+                          🧭 Live Oceanic Console
+                        </span>
+                        <LeafIcon className="w-3.5 h-3.5 text-ochre-600 dark:text-ochre-400" />
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-parchment-card/90 dark:bg-night-card border border-forest-700/15 dark:border-night-border shadow-inner mb-6">
+                        <div className="flex items-center justify-between text-[11px] font-mono text-forest-700/70 dark:text-night-muted mb-3">
+                          <span>SECTOR 4 · PACIFIC CORRIDOR</span>
+                          <span className="text-emerald-600 dark:text-emerald-400 font-semibold">● Simulated Live</span>
+                        </div>
+
+                        <div className="space-y-2 mb-4">
+                          {[
+                            { name: "Nordic Voyager", type: "Cargo Vessel", speed: "16.4 kn", status: "In Transit" },
+                            { name: "Oceanic Pearl", type: "Cruise Liner", speed: "21.2 kn", status: "Cruising Corridor" },
+                            { name: "Titan Box 400", type: "Container Carrier", speed: "18.8 kn", status: "En Route Port" }
+                          ].map((v, i) => (
+                            <div key={i} className="p-2.5 rounded-lg bg-parchment-100/80 dark:bg-night-elevated border border-forest-700/10 dark:border-night-border flex items-center justify-between text-xs">
+                              <div>
+                                <span className="font-semibold text-forest-900 dark:text-night-text">{v.name}</span>
+                                <span className="text-[10px] text-forest-700/60 dark:text-night-muted block">{v.type}</span>
+                              </div>
+                              <div className="text-right">
+                                <span className="font-mono text-[11px] text-forest-800 dark:text-forest-200">{v.speed}</span>
+                                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 block">{v.status}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Species Sub-Finder */}
+                        <div className="pt-3 border-t border-forest-700/10 dark:border-night-border">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[11px] font-mono uppercase tracking-wider text-forest-800 dark:text-forest-200 font-semibold">
+                              Water Species Finder
+                            </span>
+                            <span className="text-[10px] font-mono text-ochre-600 dark:text-ochre-400">Interactive</span>
+                          </div>
+
+                          <div className="flex gap-1.5 mb-3">
+                            {Object.keys(speciesList).map((k) => (
+                              <button
+                                key={k}
+                                onClick={() => setSelectedSpecies(k)}
+                                className={`px-2 py-1 rounded text-[11px] font-sans transition-all btn-tactile ${
+                                  selectedSpecies === k
+                                    ? 'bg-forest-700 text-parchment-50 dark:bg-forest-600 font-semibold'
+                                    : 'bg-parchment-200/80 dark:bg-night-elevated text-forest-800 dark:text-night-muted'
+                                }`}
+                              >
+                                {speciesList[k].icon} {speciesList[k].name.split(" ")[0]}
+                              </button>
+                            ))}
+                          </div>
+
+                          <div className="p-2.5 rounded-lg bg-teal-50/60 dark:bg-teal-950/20 border border-teal-200/50 dark:border-teal-800/40 text-[11px]">
+                            <div className="flex items-start justify-between">
+                              <div>
+                                <span className="font-serif font-semibold text-forest-900 dark:text-night-text text-xs">
+                                  {speciesList[selectedSpecies].name}
+                                </span>
+                                <span className="italic text-forest-700/70 dark:text-night-muted block text-[10px]">
+                                  {speciesList[selectedSpecies].scientific}
+                                </span>
+                              </div>
+                              <span className="px-2 py-0.5 rounded-full text-[10px] font-mono bg-ochre-100 dark:bg-ochre-900/40 text-ochre-800 dark:text-ochre-300 border border-ochre-300 dark:border-ochre-700/30">
+                                {speciesList[selectedSpecies].status}
+                              </span>
+                            </div>
+                            <div className="mt-2 text-forest-800 dark:text-night-muted text-[10px] font-mono">
+                              Depth Zone: {speciesList[selectedSpecies].depth}
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <LeafDivider className="mt-20" />
+          </div>
+        </section>
+      );
+    }
+
+    // Contact Component with Shifting Radial Breathing Glow
+    function Contact() {
+      const [copied, setCopied] = useState(false);
+
+      const contactLinks = [
+        {
+          label: "Email",
+          value: "suhanaparvezkhan@gmail.com",
+          placeholderTag: "Direct Email",
+          href: "mailto:suhanaparvezkhan@gmail.com",
+          isEmail: true
+        },
+        {
+          label: "GitHub",
+          value: "github.com/suhanakhan-dev",
+          placeholderTag: "[PLACEHOLDER — Replace with your GitHub URL]",
+          href: "https://github.com",
+          isExternal: true
+        },
+        {
+          label: "LinkedIn",
+          value: "linkedin.com/in/suhana-khan-ai",
+          placeholderTag: "[PLACEHOLDER — Replace with your LinkedIn URL]",
+          href: "https://linkedin.com",
+          isExternal: true
+        }
+      ];
+
+      const handleCopyEmail = (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText("suhanaparvezkhan@gmail.com");
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2500);
+      };
+
+      const handleDownloadResume = () => {
+        const text = 
+          "Suhana Khan — Curriculum Vitae\n" +
+          "B.Tech Computer Science & Engineering (AI & ML)\n\n" +
+          "Specialization: Artificial Intelligence, Machine Learning, Interactive Systems\n" +
+          "Primary Tool: React, Python, JavaScript, C++, SQL\n\n" +
+          "Projects:\n" +
+          "1. Memory Card Game (React) — Cottagecore theme, 3 play modes, strategic bot memory tracking.\n" +
+          "2. Ocean Tracker (Lovable Prototype) — Live container/ship/cruise tracker + marine water species finder.\n\n" +
+          "Contact:\n" +
+          "Email: suhanaparvezkhan@gmail.com\n" +
+          "GitHub: https://github.com [PLACEHOLDER]\n" +
+          "LinkedIn: https://linkedin.com [PLACEHOLDER]\n";
+        
+        const blob = new Blob([text], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Suhana_Khan_Resume.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+
+      return (
+        <section id="contact" className="py-20 md:py-28 relative overflow-hidden">
+          
+          {/* Soft Radial Glow that slowly shifts position */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[580px] h-[480px] bg-gradient-to-tr from-ochre-400/[0.08] via-forest-600/[0.05] to-transparent dark:from-amber-400/[0.06] dark:via-emerald-500/[0.04] to-transparent rounded-full blur-[90px] animate-contact-glow pointer-events-none -z-10" aria-hidden="true" />
+
+          <div className="max-w-4xl mx-auto px-6 sm:px-8">
+            <div className="rounded-3xl p-8 sm:p-12 bg-parchment-card/95 dark:bg-night-card/95 border-2 border-forest-700/20 dark:border-night-border shadow-notebook relative overflow-hidden field-card">
+              
+              <div className="absolute -bottom-8 -right-8 opacity-5 dark:opacity-10 pointer-events-none" aria-hidden="true">
+                <LeafIcon className="w-56 h-56 text-forest-900 dark:text-emerald-400" />
+              </div>
+
+              <div className="flex items-center justify-between pb-6 mb-8 border-b border-forest-700/15 dark:border-night-border relative z-10">
+                <div>
+                  <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-ochre-600 dark:text-ochre-400 mb-1.5">
+                    <span>04</span>
+                    <span className="w-4 h-px bg-ochre-500"></span>
+                    <span>Get In Touch</span>
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-serif font-bold text-forest-900 dark:text-night-text tracking-tight">
+                    Correspondence & Inquiries
+                  </h2>
+                </div>
+                <div className="w-10 h-10 rounded-full bg-forest-700/10 dark:bg-forest-400/10 flex items-center justify-center text-forest-700 dark:text-forest-200">
+                  <LeafIcon className="w-5 h-5" />
+                </div>
+              </div>
+
+              <p className="text-base sm:text-lg text-forest-900/80 dark:text-night-muted leading-relaxed font-normal mb-8 relative z-10">
+                Whether you want to discuss machine learning applications, collaborate on game development, or talk design aesthetics — my inbox is always open.
+              </p>
+
+              {/* Text Links with Explicit Placeholders */}
+              <div className="space-y-4 mb-10 relative z-10">
+                {contactLinks.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-xl bg-parchment-100/70 dark:bg-night-elevated border border-forest-700/10 dark:border-night-border flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-forest-700/30 transition-all field-card"
+                  >
+                    <div>
+                      <span className="text-xs font-mono uppercase tracking-wider text-forest-700/70 dark:text-night-muted block">
+                        {item.label}
+                      </span>
+                      <a
+                        href={item.href}
+                        target={item.isExternal ? "_blank" : undefined}
+                        rel={item.isExternal ? "noopener noreferrer" : undefined}
+                        className="font-medium text-sm text-forest-900 dark:text-night-text group-hover:text-ochre-600 dark:group-hover:text-ochre-400 underline underline-offset-4 decoration-forest-700/30 transition-colors"
+                      >
+                        {item.value}
+                      </a>
+                    </div>
+
+                    <div className="flex items-center gap-3 self-end sm:self-center">
+                      <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-ochre-100/70 dark:bg-ochre-950/40 text-ochre-800 dark:text-ochre-300 border border-ochre-300/60 dark:border-ochre-700/40">
+                        {item.placeholderTag}
+                      </span>
+                      {item.isEmail && (
+                        <button
+                          onClick={handleCopyEmail}
+                          id="copy-email-btn"
+                          className="px-2.5 py-1 rounded-md text-xs bg-forest-700/10 text-forest-800 dark:text-night-text hover:bg-forest-700/20 btn-tactile"
+                        >
+                          {copied ? "Copied!" : "Copy"}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Action: Resume Download Button */}
+              <div className="pt-6 border-t border-forest-700/15 dark:border-night-border flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+                <div className="text-xs text-forest-700/80 dark:text-night-muted font-sans">
+                  Looking for a complete chronological overview?
+                </div>
+
+                <button
+                  onClick={handleDownloadResume}
+                  id="resume-download-btn"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-forest-700 hover:bg-forest-800 dark:bg-forest-600 dark:hover:bg-forest-700 text-parchment-50 font-medium text-sm tracking-wide shadow-md transition-all cursor-pointer btn-tactile"
+                >
+                  <span>Download Resume</span>
+                  <span className="text-xs text-parchment-200/80 font-mono">(Summary)</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    // Footer Component
+    function Footer() {
+      return (
+        <footer className="py-12 border-t border-forest-700/10 dark:border-night-border relative text-xs text-forest-700/70 dark:text-night-muted">
+          <div className="max-w-6xl mx-auto px-6 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <LeafIcon className="w-4 h-4 text-ochre-600 dark:text-ochre-400" />
+              <span className="font-serif font-semibold text-forest-900 dark:text-night-text">
+                Suhana Khan
+              </span>
+              <span>·</span>
+              <span>B.Tech CSE (AI & ML)</span>
+            </div>
+
+            <div className="font-mono text-[11px] text-center">
+              Field Notebook Edition · Crafted with React & Tailwind CSS
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a href="#" className="hover:text-ochre-600 dark:hover:text-ochre-400 transition-colors">
+                Back to Top &uarr;
+              </a>
+              <span>&copy; {new Date().getFullYear()}</span>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    // Root App Component with Dark Mode & Scroll Parallax State
+    function App() {
+      const [darkMode, setDarkMode] = useState(() => {
+        const saved = localStorage.getItem('suhana-portfolio-theme');
+        if (saved !== null) return saved === 'dark';
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      });
+
+      const [scrollY, setScrollY] = useState(0);
+
+      useEffect(() => {
+        if (darkMode) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('suhana-portfolio-theme', 'dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('suhana-portfolio-theme', 'light');
+        }
+      }, [darkMode]);
+
+      // Highly performant passive scroll listener for subtle background parallax
+      useEffect(() => {
+        let ticking = false;
+        const handleScroll = () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              setScrollY(window.scrollY);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      return (
+        <div className="min-h-screen bg-parchment-100 text-[#1C241E] dark:bg-night-bg dark:text-night-text transition-colors duration-300 relative">
+          
+          {/* Living Ambient Organic Shapes Layer */}
+          <AmbientBackgroundShapes scrollY={scrollY} />
+
+          {/* Navigation */}
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+          
+          {/* Main Sections */}
+          <main>
+            <Hero scrollY={scrollY} />
+            <About />
+            <Skills />
+            <Projects />
+            <Contact />
+          </main>
+
+          {/* Footer */}
+          <Footer />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

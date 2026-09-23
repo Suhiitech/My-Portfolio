@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: 'Fraunces', 'Playfair Display', serif;
+  }
+}
+
+/* Tactile Archival Paper Texture Overlay */
+.paper-grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.dark .paper-grain-overlay {
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* Living Organic Gradient Drift Keyframes */
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate3d(35px, -28px, 0) scale(1.08) rotate(4deg); }
+  66% { transform: translate3d(-24px, 22px, 0) scale(0.94) rotate(-3deg); }
+}
+
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  40% { transform: translate3d(-38px, 32px, 0) scale(1.06) rotate(-5deg); }
+  75% { transform: translate3d(28px, -18px, 0) scale(0.96) rotate(3deg); }
+}
+
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(24px, 32px, 0) scale(1.07); }
+}
+
+@keyframes blob-drift-4 {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate3d(-25px, -25px, 0) scale(1.05) rotate(4deg); }
+}
+
+.animate-blob-1 { animation: blob-drift-1 26s cubic-bezier(0.4, 0, 0.2, 1) infinite; will-change: transform; }
+.animate-blob-2 { animation: blob-drift-2 32s cubic-bezier(0.4, 0, 0.2, 1) infinite; will-change: transform; }
+.animate-blob-3 { animation: blob-drift-3 28s cubic-bezier(0.4, 0, 0.2, 1) infinite; will-change: transform; }
+.animate-blob-4 { animation: blob-drift-4 34s cubic-bezier(0.4, 0, 0.2, 1) infinite; will-change: transform; }
+
+/* Ambient Warm Specular Light Sweep Across Hero */
+@keyframes light-sweep {
+  0% { transform: translateX(-120%) rotate(25deg); opacity: 0; }
+  20% { opacity: 0.06; }
+  50% { opacity: 0.08; }
+  80% { opacity: 0.05; }
+  100% { transform: translateX(220%) rotate(25deg); opacity: 0; }
+}
+.animate-light-sweep {
+  animation: light-sweep 24s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Botanical Line-Art Gentle Floating & Breathing */
+@keyframes botanical-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0.28; }
+  50% { transform: translate3d(0, -9px, 0) rotate(2.5deg); opacity: 0.44; }
+}
+.animate-botanical-float {
+  animation: botanical-float 16s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+@keyframes botanical-sway {
+  0%, 100% { transform: rotate(0deg) translate3d(0, 0, 0); opacity: 0.25; }
+  50% { transform: rotate(-3deg) translate3d(-4px, -6px, 0); opacity: 0.38; }
+}
+.animate-botanical-sway {
+  animation: botanical-sway 18s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Subtle Floating Botanical Motes / Spores */
+@keyframes mote-drift-1 {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.25; }
+  50% { transform: translate3d(14px, -28px, 0); opacity: 0.65; }
+}
+@keyframes mote-drift-2 {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.2; }
+  50% { transform: translate3d(-16px, -22px, 0); opacity: 0.6; }
+}
+@keyframes mote-drift-3 {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.22; }
+  50% { transform: translate3d(10px, -32px, 0); opacity: 0.55; }
+}
+.animate-mote-1 { animation: mote-drift-1 14s ease-in-out infinite alternate; }
+.animate-mote-2 { animation: mote-drift-2 18s ease-in-out infinite alternate; }
+.animate-mote-3 { animation: mote-drift-3 16s ease-in-out infinite alternate; }
+
+/* Field Notebook Dynamic Dot Grid */
+.field-dot-grid {
+  background-image: radial-gradient(rgba(31, 66, 50, 0.08) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+  animation: grid-drift 45s linear infinite;
+}
+.dark .field-dot-grid {
+  background-image: radial-gradient(rgba(52, 211, 153, 0.08) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+}
+@keyframes grid-drift {
+  0% { background-position: 0 0; }
+  100% { background-position: 26px 26px; }
+}
+
+/* Contact Glow Pulse */
+@keyframes contact-glow-pulse {
+  0%, 100% { transform: scale(1) translate3d(0, 0, 0); opacity: 0.35; }
+  50% { transform: scale(1.1) translate3d(10px, -8px, 0); opacity: 0.6; }
+}
+.animate-contact-glow {
+  animation: contact-glow-pulse 16s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Card Micro-Interaction Enhancements */
+.field-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.field-card:hover {
+  transform: translateY(-3px);
+}
+
+.btn-tactile {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background-color 0.2s ease;
+}
+.btn-tactile:hover {
+  transform: translateY(-2px);
+}
+.btn-tactile:active {
+  transform: translateY(0px);
+}
+
+/* Custom delicate scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(31, 66, 50, 0.18);
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(31, 66, 50, 0.35);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Strict prefers-reduced-motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-blob-1, .animate-blob-2, .animate-blob-3, .animate-blob-4,
+  .animate-light-sweep, .animate-botanical-float, .animate-botanical-sway,
+  .animate-mote-1, .animate-mote-2, .animate-mote-3, .field-dot-grid,
+  .animate-contact-glow {
+    animation: none !important;
+    transform: none !important;
+  }
+  .field-card:hover, .btn-tactile:hover {
+    transform: none !important;
+  }
+}
